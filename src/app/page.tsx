@@ -257,13 +257,21 @@ export default function DashboardPage() {
 
   const fetchData = useCallback(async () => {
     setLoading(true);
-    const res = await vcaasApi.projects.list();
-    if (res.ok && res.data) {
+    try {
+      const res = await vcaasApi.projects.list();
+      if (!res.ok) {
+        throw new Error("Project list request failed");
+      }
+
       const list = Array.isArray(res.data) ? res.data : [];
       list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setProjects(list);
+    } catch (error) {
+      console.error("Failed to load projects:", error);
+      toast.error("Couldn't load projects. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   useEffect(() => { fetchData(); }, [fetchData]);

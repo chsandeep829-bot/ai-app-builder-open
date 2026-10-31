@@ -108,7 +108,7 @@ npm run dev
 
 Open **[http://localhost:3000](http://localhost:3000)**, type what you want to build, and watch it happen. 🎉
 
-**Requirements:** [Node.js](https://nodejs.org) 20+ and npm. Nothing else.
+**Requirements:** [Node.js](https://nodejs.org) 20.9 or newer and npm. Next.js 16 requires Node.js 20.9+. Nothing else.
 
 ---
 
